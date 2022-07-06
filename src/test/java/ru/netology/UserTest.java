@@ -32,8 +32,7 @@ public class UserTest {
         $("[data-test-id='login'] input").val(notRegisteredUser.getLogin());
         $("[data-test-id='password'] input").val(notRegisteredUser.getPassword());
         $x(".//button").click();
-        $x("//h2").should(text("Личный кабинет"));
-        $("[data-test-id='error-notification'] div[class='notification__content']")
+        $("[data-test-id='error-notification'] [class='notification__content']")
                 .should(text("Неверно указан логин или пароль"));
     }
 
@@ -45,7 +44,7 @@ public class UserTest {
         $("[data-test-id='login'] input").val(blockedUser.getLogin());
         $("[data-test-id='password'] input").val(blockedUser.getPassword());
         $x(".//button").click();
-        $("[data-test-id='error-notification'] div[class='notification__content']")
+        $("[data-test-id='error-notification'] [class='notification__content']")
                 .should(text("Пользователь заблокирован"));
     }
 
@@ -58,7 +57,7 @@ public class UserTest {
         $("[data-test-id='login'] input").val(wrongLogin);
         $("[data-test-id='password'] input").val(registeredUser.getPassword());
         $x(".//button").click();
-        $("[data-test-id='error-notification'] div[class='notification__content']")
+        $("[data-test-id='error-notification'] [class='notification__content']")
                 .should(text("Неверно указан логин или пароль"));
     }
 
@@ -71,7 +70,7 @@ public class UserTest {
         $("[data-test-id='login'] input").val(registeredUser.getLogin());
         $("[data-test-id='password'] input").val(wrongPassword);
         $x(".//button").click();
-        $("[data-test-id='error-notification'] div[class='notification__content']")
+        $("[data-test-id='error-notification'] [class='notification__content']")
                 .should(text("Неверно указан логин или пароль"));
     }
 }
