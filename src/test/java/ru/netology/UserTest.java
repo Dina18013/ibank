@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static ru.netology.UserGenerator.*;
 
@@ -22,7 +21,7 @@ public class UserTest {
         $("[data-test-id='login'] input").val(registeredUser.getLogin());
         $("[data-test-id='password'] input").val(registeredUser.getPassword());
         $x(".//button").click();
-        $x("//h2").should(text("Личный кабинет"));
+        $(".heading").should(text("Личный кабинет"));
     }
 
     @Test
@@ -34,8 +33,8 @@ public class UserTest {
         $("[data-test-id='password'] input").val(notRegisteredUser.getPassword());
         $x(".//button").click();
         $x("//h2").should(text("Личный кабинет"));
-        $("[data-test-id='error-notification'] div[class='notification__content']").
-                shouldBe(visible).should(text("Неверно указан логин или пароль"));
+        $("[data-test-id='error-notification'] div[class='notification__content']")
+                .should(text("Неверно указан логин или пароль"));
     }
 
     @Test
@@ -46,8 +45,8 @@ public class UserTest {
         $("[data-test-id='login'] input").val(blockedUser.getLogin());
         $("[data-test-id='password'] input").val(blockedUser.getPassword());
         $x(".//button").click();
-        $("[data-test-id='error-notification'] div[class='notification__content']").
-                shouldBe(visible).should(text("Пользователь заблокирован"));
+        $("[data-test-id='error-notification'] div[class='notification__content']")
+                .should(text("Пользователь заблокирован"));
     }
 
     @Test
@@ -59,8 +58,8 @@ public class UserTest {
         $("[data-test-id='login'] input").val(wrongLogin);
         $("[data-test-id='password'] input").val(registeredUser.getPassword());
         $x(".//button").click();
-        $("[data-test-id='error-notification'] div[class='notification__content']").
-                shouldBe(visible).should(text("Неверно указан логин или пароль"));
+        $("[data-test-id='error-notification'] div[class='notification__content']")
+                .should(text("Неверно указан логин или пароль"));
     }
 
     @Test
@@ -72,7 +71,7 @@ public class UserTest {
         $("[data-test-id='login'] input").val(registeredUser.getLogin());
         $("[data-test-id='password'] input").val(wrongPassword);
         $x(".//button").click();
-        $("[data-test-id='error-notification'] div[class='notification__content']").
-                shouldBe(visible).should(text("Неверно указан логин или пароль"));
+        $("[data-test-id='error-notification'] div[class='notification__content']")
+                .should(text("Неверно указан логин или пароль"));
     }
 }
